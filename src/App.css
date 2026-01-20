@@ -148,3 +148,33 @@ btn {
   outline: none;
   border-color: #4a90e2;
 }
+.task-list {
+  flex: 1;
+  list-style: none;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+.task-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.15s;
+  min-height: 60px;
+}
+
+.task-item.active {
+  background: #e6f3ff;
+  border-left: 4px solid #4a90e2;
+}
+
+.task-item.completed {
+  opacity: 0.65;
+}
+
+.task-item.completed .task-title {
+  color: #6a6d72;
+}
