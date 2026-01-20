@@ -40,3 +40,26 @@ body {
     padding: 1.5rem;
   }
 }
+
+.timer-section {
+  display: flex;
+  background: white;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.timer-display h1 {
+  font-size: 5.8rem;
+  font-weight: 700;
+  letter-spacing: -6px;
+  margin: 1rem 0 2rem;
+  color: #1a1a1a;
+}
+
+.timer-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 320px;
+}
