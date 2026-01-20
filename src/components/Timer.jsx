@@ -11,6 +11,7 @@ function Timer({ timeLeft, isRunning, onStart, onPause, onReset, hasActiveTask }
       <div className="timer-controls">
         <button
           className="btn btn-primary btn-large"
+          onClick={isRunning ? onPause : onStart}
           disabled={isRunning || !hasActiveTask}
         >
           {isRunning ? 'Pause' : 'Start'}
