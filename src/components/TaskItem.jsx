@@ -32,8 +32,8 @@ function TaskItem({
                     value={editTitle}
                     onChange={(e) => setEditTitle(e.target.value)}
                     onKeyDown={(e) => {
-                        if (e.key === 'Enter') saveEdit();
-                        if (e.key === 'Escape') cancelEdit();
+                        if (e.key === "Enter") saveEdit();
+                        if (e.key === "Escape") cancelEdit();
                     }}
                     autoFocus
                     className="edit-input"
@@ -73,7 +73,7 @@ function TaskItem({
 
             <div className="task-actions">
                 <button
-                    className={`btn btn-play ${task.isRunning ? 'active' : ''}`}
+                    className={`btn btn-play ${task.isRunning ? "active" : ""}`}
                     onClick={handlePlayPause}
                     disabled={task.completed}
                 >
