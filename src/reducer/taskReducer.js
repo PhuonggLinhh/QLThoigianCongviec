@@ -1,6 +1,6 @@
 export default function taskReducer(state = [], action) {
     switch (action.type) {
-        case 'ADD_TASK':
+        case "ADD_TASK":
             return [
                 ...state,
                 {
@@ -13,11 +13,11 @@ export default function taskReducer(state = [], action) {
             ];
 
 
-        case 'STOP_ALL_TASKS':
+        case "STOP_ALL_TASKS":
             return state.map((t) => ({ ...t, isRunning: false }));
 
 
-        case 'STOP_TASK':
+        case "STOP_TASK":
             return state.map(task =>
                 task.id === action.payload
                     ? { ...task, isRunning: false }
