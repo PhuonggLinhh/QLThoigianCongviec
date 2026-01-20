@@ -178,3 +178,51 @@ btn {
 .task-item.completed .task-title {
   color: #6a6d72;
 }
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #4a90e2;
+}
+
+.task-content {
+  flex: 1;
+  display: flex;
+}
+
+.task-title {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.btn-play {
+  color: #4a90e2;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 1.05rem;
+  border: 1px solid #e0e7ff;
+  border-radius: 6px;
+  outline: none;
+}
+
+.btn-save {
+  background: #4a90e2;
+  color: white;
+}
+
+.btn-cancel {
+  background: #e2e8f0;
+  color: #475569;
+}
