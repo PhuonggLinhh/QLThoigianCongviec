@@ -1,23 +1,36 @@
-import React from 'react';
 import TaskItem from './TaskItem';
 
-const TaskList = ({ tasks, dispatch, activeTaskId }) => {
+function TaskList({
+  tasks,
+  onDelete,
+  onToggleComplete,
+  onToggleEdit,
+  onSaveEdit,
+  onStartTask,
+  onPauseTask,
+  timerIsRunning,
+}) {
+  if (tasks.length === 0) {
+    return <p>No tasks yet. Add one to get started!</p>;
+  }
+
   return (
-    <div className="task-list">
-      {tasks.length === 0 ? (
-        <p>No tasks yet. Add one to get started!</p>
-      ) : (
-        tasks.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            dispatch={dispatch}
-            isActive={task.id === activeTaskId}
-          />
-        ))
-      )}
-    </div>
+    <ul className="task-list">
+      {tasks.map((task) => (
+        <TaskItem
+          key={task.id}
+          task={task}
+          onDelete={onDelete}
+          onToggleComplete={onToggleComplete}
+          onToggleEdit={onToggleEdit}
+          onSaveEdit={onSaveEdit}
+          onStartTask={onStartTask}
+          onPauseTask={onPauseTask}
+          timerIsRunning={timerIsRunning}
+        />
+      ))}
+    </ul>
   );
-};
+}
 
 export default TaskList;
