@@ -16,6 +16,18 @@ function Timer({ timeLeft, isRunning, onStart, onPause, onReset, hasActiveTask }
         >
           {isRunning ? 'Pause' : 'Start'}
         </button>
+
+        <button
+          className={`btn btn-secondary ${isRunning ? 'active' : ''}`}
+          onClick={onPause}
+          disabled={!isRunning}
+        >
+          Pause
+        </button>
+
+        <button className="btn btn-secondary" onClick={onReset}>
+          Reset
+        </button>
       </div>
     </div>
   );
