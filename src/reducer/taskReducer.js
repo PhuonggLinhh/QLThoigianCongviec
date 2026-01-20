@@ -11,7 +11,12 @@ export default function taskReducer(state = [], action) {
                     isEditing: false,
                 },
             ];
-
+        case "TOGGLE_COMPLETE":
+            return state.map(task =>
+                task.id === action.payload
+                    ? { ...task, completed: !task.completed }
+                    : task
+            );
 
         case "STOP_ALL_TASKS":
             return state.map((t) => ({ ...t, isRunning: false }));
