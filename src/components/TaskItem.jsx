@@ -1,56 +1,55 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-const TaskItem = ({ task, dispatch, isActive }) => {
+function TaskItem({
+  task,
+  onToggleComplete,
+  onStartTask,
+  onPauseTask,
+  onDelete,
+  onSaveEdit,
+}) {
   const [isEditing, setIsEditing] = useState(false);
-  const [editText, setEditText] = useState(task.text);
+  const [editTitle, setEditTitle] = useState(task.title);
 
-  const handleToggleComplete = () => {
-    dispatch({ type: 'TOGGLE_COMPLETE', payload: { id: task.id } });
-  };
-
-  const handleDelete = () => {
-    dispatch({ type: 'DELETE_TASK', payload: { id: task.id } });
-  };
-
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleSaveEdit = () => {
-    if (editText.trim()) {
-      dispatch({ type: 'EDIT_TASK', payload: { id: task.id, text: editText } });
-      setIsEditing(false);
+  const saveEdit = () => {
+    const trimmed = editTitle.trim();
+    if (trimmed && trimmed !== task.title) {
+      onSaveEdit(task.id, trimmed);
     }
+    setIsEditing(false);
   };
 
-  const handleStartTimer = () => {
-    dispatch({ type: 'SET_ACTIVE_TASK', payload: { id: task.id } });
+  const cancelEdit = () => {
+    setEditTitle(task.title);
+    setIsEditing(false);
   };
 
-  return (
-    <div className={`task-item ${task.completed ? 'completed' : ''} ${isActive ? 'active' : ''}`}>
-      {isEditing ? (
-        <>
-          <input
-            type="text"
-            value={editText}
-            onChange={(e) => setEditText(e.target.value)}
-          />
-          <button onClick={handleSaveEdit}>Lưu</button>
-        </>
-      ) : (
-        <>
-          <span>{task.text}</span>
-          <button onClick={handleToggleComplete}>
-            {task.completed ? 'Hoàn tác' : 'Hoàn thành'}
+  if (isEditing) {
+    return (
+      <li className={`task-item editing ${task.completed ? 'completed' : ''}`}>
+        <input
+          type="text"
+          value={editTitle}
+          onChange={(e) => setEditTitle(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') saveEdit();
+            if (e.key === 'Escape') cancelEdit();
+          }}
+          autoFocus
+          className="edit-input"
+        />
+
+        <div className="task-actions edit-actions">
+          <button className="btn btn-save" onClick={saveEdit}>
+            Lưu
           </button>
-          <button onClick={handleEdit}>Sửa</button>
-          <button onClick={handleDelete}>Xóa</button>
-          {!task.completed && <button onClick={handleStartTimer}>▶️ Bắt đầu</button>}
-        </>
-      )}
-    </div>
-  );
-};
+          <button className="btn btn-cancel" onClick={cancelEdit}>
+            Hủy
+          </button>
+        </div>
+      </li>
+    );
+  }
+}
 
 export default TaskItem;
