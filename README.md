@@ -1,16 +1,78 @@
-# React + Vite
+1.Giới thiệu
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Smart Pomodoro & Task Manager là một ứng dụng web kết hợp giữa quản lý công việc (To‑Do List) và đồng hồ Pomodoro, giúp người dùng tập trung làm việc hiệu quả hơn thông qua kỹ thuật quản lý thời gian Pomodoro (25 phút mỗi phiên).
 
-Currently, two official plugins are available:
+Dự án được xây dựng với mục tiêu thực hành React Hooks, quản lý trạng thái ứng dụng và xử lý logic thời gian thực. Đây là một project rất phù hợp cho sinh viên hoặc người mới học React muốn nâng cao tư duy tổ chức component và state.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2.Chức năng chính
 
-## React Compiler
+- Thêm, sửa, xóa công việc
+- Đánh dấu công việc đã hoàn thành
+- Gắn đồng hồ Pomodoro (25 phút) cho từng công việc
+- Đếm ngược thời gian và thông báo khi kết thúc phiên Pomodoro
+- Tạm dừng / tiếp tục timer
+- Làm nổi bật công việc đang được thực hiện
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+3.Mô tả ứng dụng
 
-## Expanding the ESLint configuration
+Người dùng có thể tạo danh sách các công việc cần làm. Mỗi công việc có thể được khởi động một phiên Pomodoro 25 phút để tập trung làm việc.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Ứng dụng sẽ:
+
+- Đếm ngược thời gian theo từng giây
+- Thay đổi trạng thái giao diện khi timer chạy
+- Phát thông báo hoặc thay đổi tiêu đề trình duyệt khi hết giờ
+
+4.Giao diện & Trạng thái hoạt động
+
+4.1. Giao diện chính (Chưa có công việc)
+
+- Hiển thị đồng hồ Pomodoro
+- Danh sách công việc trống
+- Cho phép người dùng thêm công việc mới
+Component chính: Timer, TaskInput
+
+![chua co cong viec](public/image.png)
+
+4.2. Giao diện chính (Đã có công việc)
+
+- Danh sách công việc được hiển thị bằng map()
+- Mỗi công việc có các nút:
+  * ▶️ Bắt đầu Pomodoro
+  * ✏️ Chỉnh sửa
+  * 🗑️ Xóa
+Component chính: TaskList, TaskItem
+
+![da co cong viec](public/image-1.png)
+
+4.3. Trạng thái Timer đang chạy
+
+- Đồng hồ bắt đầu đếm ngược
+- Công việc đang chạy được highlight
+- Nút Start chuyển thành Pause
+
+![time chay](public/image-2.png)
+
+4.4. Trạng thái chỉnh sửa công việc (Inline Edit)
+
+- Nội dung công việc chuyển sang ô input
+- Cho phép chỉnh sửa trực tiếp ngay trong danh sách
+
+![Inline edit](public/image-3.png)
+
+5. Kiến thức & Công nghệ áp dụng
+
+* React Hooks
+- useState: Quản lý state cơ bản (input, timer, UI)
+- useEffect: Xử lý side‑effects (đếm ngược, thông báo)
+- useReducer`: Quản lý state phức tạp cho danh sách công việc
+- useRef: Lưu trữ ID của setInterval để clear timer khi cần
+
+Các action tiêu biểu:
+
+* ADD_TASK
+* DELETE_TASK
+* EDIT_TASK
+* TOGGLE_COMPLETE
+* START_TASK
+* STOP_TASK
